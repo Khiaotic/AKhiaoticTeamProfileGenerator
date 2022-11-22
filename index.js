@@ -9,6 +9,7 @@ const Intern= require("./team_library/Intern");
 
 ///Generator IOE (information of interest///
 const teamBuild = () => {
+    
     inquirer .prompt([
         //ask if client wants manager//
        {
