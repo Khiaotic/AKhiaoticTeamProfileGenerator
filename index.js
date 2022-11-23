@@ -10,8 +10,14 @@ const Manager = require("./team_library/Manager");
 const Engineer = require("./team_library/Engineer");
 const Intern = require("./team_library/Intern");
 
-///Generator Manager IOE (information of interest)///
-const teamBuild = () => {
+let defaultID = 1
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+
+///Generator Manager IOI (information of interest)///
+const managerInfo = () => {
   return (
     inquirer
       .prompt([
@@ -64,11 +70,11 @@ const teamBuild = () => {
       ])
 
       //for each new client//
-      .then(function ({ name, id, email, office }) {
-        let manager = new Manager(name, id, email, office);
-        let generator = new roleGenerator(); 
+      .then(function ({ name, id, email, officeNumber }) {
+        let manager = new Manager(name, id, email, officeNumber);
+        let generator = new roleGenerator();
 
-        //uhhhhhhhhhh
+        
       })
   );
 };
