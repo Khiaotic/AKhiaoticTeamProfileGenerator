@@ -66,19 +66,9 @@ const teamBuild = () => {
       //for each new client//
       .then(function ({ name, id, email, office }) {
         let manager = new Manager(name, id, email, office);
-        let generator = new Generator();
+        let generator = new roleGenerator(); 
 
         //uhhhhhhhhhh
       })
   );
 };
-//     inquirer.prompt([
-//         //ask if client wants manager//
-//        {
-//         type: 'confirm',
-//         message: "Would you like to add a manager?",
-//         name: 'name',
-//        },
-//     ])
-//         //if so THEN! allow client input "manager" info prompts execute//
-// .then (({manager}) => {

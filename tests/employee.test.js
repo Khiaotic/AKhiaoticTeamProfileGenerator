@@ -25,14 +25,14 @@ test("create job title of employee", () => {
 test("get employee name", () => {
   const name = "Khi";
   const x = new Employee(name);
-  expect(x.name).toEqual("Khi");
+  expect(x.name).toBe("Khi");
 });
 
 //create new.id constructor
 test("get employee ID", () => {
   const id = 03;
-  const x = new Employee("Khi", 03, "khifakeemail@gmail.com");
-  expect(x.id).toEqual(03);
+  const x = new Employee("Khi", id, "khifakeemail@gmail.com");
+  expect(x.id).toBe(id);
 });
 
 //create new.email constructor
@@ -44,10 +44,14 @@ test("get employee email()", () => {
 ///get get get get get get get get get get get get//
 test("get.name using getName()", () => {
   const x = new Employee("Khi", 03, "khifakeemail@gmail.com");
-  expect(x.getName()).toBe(313);
+  expect(x.getName()).toBe(name);
 });
 
 test("get.id using getName()", () => {
-  const x = new Employee("Khi", 03, "khifakeemail@gmail.com");
-  expect(x.getId()).toBe(03);
+  const x = new Employee("Khi", id, "khifakeemail@gmail.com");
+  expect(x.getId()).toBe(id);
+});
+test("get.id using getName()", () => {
+  const x = new Employee("Khi", 03, "email");
+  expect(x.getEmail()).toBe(email);
 });
