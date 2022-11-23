@@ -1,6 +1,7 @@
 const Employee = require ("../lib/Employee");
 
-detail("Employee", () => {
+//Create Employee OBJ//
+describe("Employee", () => {
     
     test("Generate an Employee Obj", () )
 })
