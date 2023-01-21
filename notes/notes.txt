@@ -20,3 +20,27 @@ THEN I exit the application, and the HTML is generated
 
 
 reinstalled inquirer and json installed 
+
+
+
+
+
+.then (({employeeType}) => {
+            if (employeeType === 'Manager') {
+                inquirer.prompt([
+                    {
+                        type:'input',
+                        name: 'name',
+                        message: 'Please enter the name of the manager',
+                        validate:nameInput => {
+                            if (nameInput) {
+                                return true;
+                            } else {
+                                console.log("So ya the manager doesn't have a name....? PLEASE ENTER THE NAME OF THE MANAGER!");
+                                return false;
+                            }
+                        }
+                    }
+                ])
+            }
+        })

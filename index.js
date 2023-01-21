@@ -1,5 +1,5 @@
 //page creation link
-const roleGenerator = require("./src/roleGenerator");
+// const roleGenerator = require("./src/roleGenerator");
 
 //node modules
 const inquirer = require("inquirer");
