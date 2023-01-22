@@ -71,7 +71,7 @@ function addEmployee() {
             } else {
                 newEmployee = new Manager(name, id, email, jobTitle);
             }
-            Employees.push(newEmployee);
+            Employees.splice(newEmployee);
             addHtml(newEmployee)
             .then(function(){
                 if(moreEmployees === 'yes') {
@@ -193,6 +193,12 @@ return resolve();
  });
 });
 }
+
+
+////////////NOTES!!!! QUESTION//////////////
+////originally for the end of the generated html, however after 
+//////each run/init it copies at teh end each time
+////////the css is messy b/c of it
 
 function generateHTML () {
 // const html =` </main>
