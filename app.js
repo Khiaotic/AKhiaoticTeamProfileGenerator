@@ -132,7 +132,7 @@ const email = employee.getEmail();
 let data ="";
 if (role === "Engineer") {
     const gitHub = employee.getGithub();
-    data =`<div class="w-60 bg-yellow rounded-xl "id="teamContainer" > 
+    data =`<div class="w-60 bg-pinky rounded-xl "id="teamContainer" > 
     <!--image-->
     <div class="font-bold text-center text-large rounded-xl">${name}</div>
     <img class="object-none object-center h-40 rounded-xl" src="https://placebeard.it/640x360">
@@ -147,7 +147,7 @@ if (role === "Engineer") {
 </div>`;
 } else if (role ==="Intern") {
     const school = employee.getSchool();
-    data=`<div class="w-60 bg-yellow rounded-xl "id="teamContainer" > 
+    data=`<div class="w-60 bg-lightblue rounded-xl "id="teamContainer" > 
     <!--image-->
     <div class="font-bold text-center text-large rounded-xl">${name}</div>
     <img class="object-none object-center h-40 rounded-xl" src="https://placebeard.it/640x360">
@@ -183,9 +183,22 @@ fs.appendFile("./dist/liveView.html", data, function (err) {
     return reject(err);
  };
 return resolve();
-})
-    })
+ });
+});
 }
+
+function generateHTML ();
+const html =` </main>
+</body>
+</html>`;
+fs.appendFile("./dist/liveView.html", html, function (err){
+    if (err) {
+        console.log(err);
+
+    };
+});
+console.log("ya done!");
+
     
 
 
