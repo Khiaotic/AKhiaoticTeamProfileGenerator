@@ -9,12 +9,19 @@ const fs = require("fs");
 const Manager = require("./team_library/Manager");
 const Engineer = require("./team_library/Engineer");
 const Intern = require("./team_library/Intern");
+const Employee = require("./team_library/Employee");
 
 const Employees = [];
 
 let defaultID = 1;
 
-function initProfile() {
+
+function initApp () {
+    generateHTML();
+    addEmployee();
+}
+
+function addEmployee() {
   inquirer
     .prompt([
       {
@@ -70,7 +77,7 @@ function initProfile() {
                 if(moreEmployees === 'yes') {
                     addEmployee();
                 } else  {
-                    GenerateHTML();
+                    generateHTML();
                 }
             });
             
@@ -113,7 +120,7 @@ function mainHtml () {
           Khiaotic's Team Profile Generator
         </div>
     
-        <main>
+        <main class = "container my-12 mx-auto px-4 md:px-12">
           <!-- CONTAINER: manager card-->
           <div class="p-8">`;
           fs.writeFile('./dist/liveView.html', html, function(err) {
@@ -124,18 +131,18 @@ function mainHtml () {
           console.log("initiate");
         }
 function addHtml (employee) {
-    return new Promise(function(resolve,reject){
-const name = employee.getName();
-const role = employee.getRole();
+    return new Promise(function(resolve, reject){
+let name = employee.getName();
+const role = employee.getJobTitle();
 const id = employee.getId();
 const email = employee.getEmail();
 let data ="";
 if (role === "Engineer") {
     const gitHub = employee.getGithub();
-    data =`<div class="w-60 bg-pinky rounded-xl "id="teamContainer" > 
+    data =`<div class="pb-8 w-60 bg-pinky rounded-xl "id="teamContainer" > 
     <!--image-->
     <div class="font-bold text-center text-large rounded-xl">${name}</div>
-    <img class="object-none object-center h-40 rounded-xl" src="https://placebeard.it/640x360">
+    <img class="object-none object-center h-40 rounded-xl" src="https://placebeard.it/639x360">
     <div class="font-bold text-center text-large rounded-xl">Engineer</div>
     <ul class="pl-2 pb-2" id="jobTitle-group">
       <li>ID:${id}</li>
@@ -147,10 +154,10 @@ if (role === "Engineer") {
 </div>`;
 } else if (role ==="Intern") {
     const school = employee.getSchool();
-    data=`<div class="w-60 bg-lightblue rounded-xl "id="teamContainer" > 
+    data=`<div class="pb-8 w-60 bg-lightblue rounded-xl "id="teamContainer" > 
     <!--image-->
     <div class="font-bold text-center text-large rounded-xl">${name}</div>
-    <img class="object-none object-center h-40 rounded-xl" src="https://placebeard.it/640x360">
+    <img class="object-none object-center h-40 rounded-xl" src="https://placebeard.it/641x360">
     <div class="font-bold text-center text-large rounded-xl">Intern</div>
     <ul class="pl-2 pb-2" id="jobTitle-group">
       <li>ID:${id}</li>
@@ -162,7 +169,7 @@ if (role === "Engineer") {
 </div>`;
 } else {
     const officeNumber  = employee.getOfficeNumber();
-    data = `<div class="w-60 bg-yellow rounded-xl "id="teamContainer" > 
+    data = `<div class="pb -8 w-60 bg-yellow rounded-xl "id="teamContainer" > 
     <!--image-->
     <div class="font-bold text-center text-large rounded-xl">${name}</div>
     <img class="object-none object-center h-40 rounded-xl" src="https://placebeard.it/640x360">
@@ -187,19 +194,19 @@ return resolve();
 });
 }
 
-function generateHTML ();
-const html =` </main>
-</body>
-</html>`;
-fs.appendFile("./dist/liveView.html", html, function (err){
-    if (err) {
-        console.log(err);
+function generateHTML () {
+// const html =` </main>
+// </body>
+// </html>`;
+// fs.appendFile("./dist/liveView.html", html, function (err){
+//     if (err) {
+//         console.log(err);
 
-    };
-});
+//     };
+// });
 console.log("ya done!");
-
+}
     
 
 
-initProfile();
+initApp();
