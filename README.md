@@ -9,9 +9,8 @@ This application is  covered by the MIT
 
 ## 👀Preview and Demo
  
-Link to Demo: nope
-
-
+Link to Demo: nope <br>
+Link to deployment page: 
 
 ## 📋Table of Contents
 -[License](#license) <br />
@@ -28,7 +27,7 @@ To clone and use this application, you'll need Git and Node.js (npm equipped) in
 
 
 ## 🧰Usage
-node index.js
+node app.js
 
 ## 🏠Contributors
 N/A
