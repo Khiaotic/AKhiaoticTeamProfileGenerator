@@ -15,15 +15,19 @@ const Employees = [];
 
 let defaultID = 1;
 
-
-function initApp () {
-    generateHTML();
-    addEmployee();
+function initApp() {
+  generateHTML();
+  addEmployee();
 }
 
 function addEmployee() {
   inquirer
     .prompt([
+      {
+        type:"input",
+        message: "Enter employee's id number",
+        name: "employeeId",
+      },
       {
         message: "Enter employee's name",
         name: "name",
@@ -48,45 +52,42 @@ function addEmployee() {
       } else {
         jobTitle = "office number";
       }
-      inquirer.prompt([
-        {
-          message: `Enter employee's ${jobTitle}`,
-          name: "jobTitle",
-        },
-        {
-            type: 'list',
+      inquirer
+        .prompt([
+          {
+            message: `Enter employee's ${jobTitle}`,
+            name: "jobTitle",
+          },
+          {
+            type: "list",
             message: "Are you adding more employees?",
-            choices:[
-                "YES",
-                "NO"
-            ],
-            name:  'moreEmployees'
-        }])
-        .then(function({jobTitle, moreEmployees}) {
-            let newEmployee;
-            if (role === "Engineer") {
-                newEmployee = new Engineer  (name, id, email, jobTitle);
-            } else if(role === "Intern") {
-                newMember = new Intern (name, id, email, jobTitle);
+            choices: ["YES", "NO"],
+            name: "moreEmployees",
+          },
+        ])
+        .then(function ({ jobTitle, moreEmployees }) {
+          let newEmployee;
+          if (role === "Engineer") {
+            newEmployee = new Engineer(name, id, email, jobTitle);
+          } else if (role === "Intern") {
+            newMember = new Intern(name, id, email, jobTitle);
+          } else {
+            newEmployee = new Manager(name, id, email, jobTitle);
+          }
+          Employees.splice(newEmployee);
+          addHtml(newEmployee).then(function () {
+            if (moreEmployees === "yes") {
+              addEmployee();
             } else {
-                newEmployee = new Manager(name, id, email, jobTitle);
+              generateHTML();
             }
-            Employees.splice(newEmployee);
-            addHtml(newEmployee)
-            .then(function(){
-                if(moreEmployees === 'yes') {
-                    addEmployee();
-                } else  {
-                    generateHTML();
-                }
-            });
-            
+          });
         });
     });
 }
 
-function mainHtml () {
-    const html = `<!DOCTYPE html>
+function mainHtml() {
+  const html = `<!DOCTYPE html>
     <html lang="en">
       <head>
         <meta charset="UTF-8" />
@@ -123,23 +124,26 @@ function mainHtml () {
         <main class = "container my-12 mx-auto px-4 md:px-12">
           <!-- CONTAINER: manager card-->
           <div class="p-8">`;
-          fs.writeFile('./dist/liveView.html', html, function(err) {
-            if (err) {
-                console.log(err);
-            }
-          });
-          console.log("initiate");
-        }
-function addHtml (employee) {
-    return new Promise(function(resolve, reject){
-let name = employee.getName();
-const role = employee.getJobTitle();
-const id = employee.getId();
-const email = employee.getEmail();
-let data ="";
-if (role === "Engineer") {
-    const gitHub = employee.getGithub();
-    data =`<div class="pb-8 w-60 bg-pinky rounded-xl "id="teamContainer" > 
+}
+
+function writeHtml() {
+  fs.writeFile("./dist/liveView.html", html, function (err) {
+    if (err) {
+      console.log(err);
+    }
+  });
+  console.log("initiate");
+}
+function addHtml(employee) {
+  return new Promise(function (resolve, reject) {
+    let name = employee.getName();
+    const role = employee.getJobTitle();
+    const id = employee.getId();
+    const email = employee.getEmail();
+    let data = "";
+    if (role === "Engineer") {
+      const gitHub = employee.getGithub();
+      data = `<div class="pb-8 w-60 bg-pinky rounded-xl "id="teamContainer" > 
     <!--image-->
     <div class="font-bold text-center text-large rounded-xl">${name}</div>
     <img class="object-none object-center h-40 rounded-xl" src="https://placebeard.it/639x360">
@@ -152,9 +156,9 @@ if (role === "Engineer") {
  
   </div>
 </div>`;
-} else if (role ==="Intern") {
-    const school = employee.getSchool();
-    data=`<div class="pb-8 w-60 bg-lightblue rounded-xl "id="teamContainer" > 
+    } else if (role === "Intern") {
+      const school = employee.getSchool();
+      data = `<div class="pb-8 w-60 bg-lightblue rounded-xl "id="teamContainer" > 
     <!--image-->
     <div class="font-bold text-center text-large rounded-xl">${name}</div>
     <img class="object-none object-center h-40 rounded-xl" src="https://placebeard.it/641x360">
@@ -167,9 +171,9 @@ if (role === "Engineer") {
  
   </div>
 </div>`;
-} else {
-    const officeNumber  = employee.getOfficeNumber();
-    data = `<div class="pb -8 w-60 bg-yellow rounded-xl "id="teamContainer" > 
+    } else {
+      const officeNumber = employee.getOfficeNumber();
+      data = `<div class="pb -8 w-60 bg-yellow rounded-xl "id="teamContainer" > 
     <!--image-->
     <div class="font-bold text-center text-large rounded-xl">${name}</div>
     <img class="object-none object-center h-40 rounded-xl" src="https://placebeard.it/640x360">
@@ -181,38 +185,35 @@ if (role === "Engineer") {
     </ul>
  
   </div>
-</div>`
+</div>`;
+    }
+    console.log("so the company is growing, changing, and adapting");
+    fs.appendFile("./dist/liveView.html", data, function (err) {
+        if (err)
+     {
+        return reject(err);
+     };
+    return resolve();
+     });
+  });
 }
-console.log("so the company is growing, changing, and adapting");
-fs.appendFile("./dist/liveView.html", data, function (err) {
-    if (err)
- {
-    return reject(err);
- };
-return resolve();
- });
-});
-}
-
 
 ////////////NOTES!!!! QUESTION//////////////
-////originally for the end of the generated html, however after 
+////originally for the end of the generated html, however after
 //////each run/init it copies at teh end each time
 ////////the css is messy b/c of it
 
-function generateHTML () {
-// const html =` </main>
-// </body>
-// </html>`;
-// fs.appendFile("./dist/liveView.html", html, function (err){
-//     if (err) {
-//         console.log(err);
+function generateHTML() {
+  const html =` </main>
+  </body>
+  </html>`;
+  fs.appendFile("./dist/liveView.html", html, function (err){
+      if (err) {
+          console.log(err);
 
-//     };
-// });
-console.log("ya done!");
+      };
+  });
+  console.log("ya done!");
 }
-    
-
 
 initApp();
