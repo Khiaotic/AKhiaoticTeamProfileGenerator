@@ -26,7 +26,7 @@ function addEmployee() {
       {
         type:"input",
         message: "Enter employee's id number",
-        name: "employeeId",
+        name: "id",
       },
       {
         message: "Enter employee's name",
