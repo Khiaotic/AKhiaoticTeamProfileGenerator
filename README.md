@@ -41,7 +41,8 @@ Are tests included in this application?: 4; use npm test to run
 ## 🤔Questions
 Find me on Github: https://github.com/Khiaotic<br />
 <br />
-If you have any questions or concerns please contact me through email: khifakeemail@gmail.com or GitHub
+If you have any questions or concerns please contact me through email: <br>
+or GitHub
 
 ## 🪙 Support
 This is FREE, OPEN-SOURCE software. <br />
