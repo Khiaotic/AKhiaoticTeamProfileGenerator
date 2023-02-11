@@ -11,7 +11,7 @@ This application is  covered by the MIT
  ![Screenshot 2023-02-04 082232](https://user-images.githubusercontent.com/112679225/216810647-5861f5cb-74d4-4356-a302-7685ca6047a2.jpg)
 
 Link to Demo: https://youtu.be/y7VkaDQiuF8 <br>
-Link to deployment page: file:///X:/Git/bootcamp/Challenge-Ten/AKhiaoticTeamProfileGenerator/dist/liveView.html
+Link to deployment page: 
 
 ## 📋Table of Contents
 -[License](#🪪License) <br />
